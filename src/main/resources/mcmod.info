@@ -1,0 +1,16 @@
+[
+    {
+      "modid": "sradditions",
+      "name": "SeriousCreepers SR Additions",
+      "description": "SeriousCreeper's SR Additions.",
+      "version": "${version}",
+      "mcversion": "${mcversion}",
+      "url": "",
+      "updateUrl": "",
+      "authorList": ["SeriousCreeper"],
+      "credits": "",
+      "logoFile": "",
+      "screenshots": [],
+      "dependencies": []
+    }
+]
