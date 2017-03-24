@@ -9,6 +9,7 @@ public class ConfigHandler {
     public static Configuration config;
 
     public static boolean FiniteWater;
+    public static boolean BottlesConsumeSourceBlock;
 
 
     public static void init(File file) {
@@ -23,6 +24,7 @@ public class ConfigHandler {
         category = "Gameplay Changes";
         config.addCustomCategoryComment(category, "Finite Water");
         FiniteWater = config.getBoolean("finiteWater", category, true, "Disables creation of water source blocks");
+        BottlesConsumeSourceBlock = config.getBoolean("bottlesConsumeSourceBlock", category, true, "Bottles consume water source block");
 
         config.save();
     }

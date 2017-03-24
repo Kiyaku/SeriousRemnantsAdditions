@@ -2,6 +2,7 @@ package com.seriouscreeper.sradditions;
 
 import com.seriouscreeper.sradditions.config.ConfigHandler;
 import com.seriouscreeper.sradditions.events.handlers.ForgeEventHandlers;
+import com.seriouscreeper.sradditions.events.handlers.ListenerRightClickBlock;
 import com.seriouscreeper.sradditions.events.handlers.ListenerWaterSource;
 import com.seriouscreeper.sradditions.init.ModBlocks;
 import com.seriouscreeper.sradditions.init.ModItems;
@@ -46,10 +47,15 @@ public class SRAdditions {
 
         ForgeEventHandlers forgeEventHandler = new ForgeEventHandlers();
         forgeEventHandler.register();
-        ListenerWaterSource listenerWaterSource = new ListenerWaterSource();
 
         if(ConfigHandler.FiniteWater) {
+            ListenerWaterSource listenerWaterSource = new ListenerWaterSource();
             MinecraftForge.EVENT_BUS.register(listenerWaterSource);
+        }
+
+        if(ConfigHandler.BottlesConsumeSourceBlock) {
+            ListenerRightClickBlock listenerRightClickBlock = new ListenerRightClickBlock();
+            MinecraftForge.EVENT_BUS.register(listenerRightClickBlock);
         }
     }
 
