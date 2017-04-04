@@ -10,6 +10,7 @@ public class ConfigHandler {
 
     public static boolean FiniteWater;
     public static boolean BottlesConsumeSourceBlock;
+    public static boolean AxeForLeather;
 
 
     public static void init(File file) {
@@ -22,9 +23,9 @@ public class ConfigHandler {
         String category;
 
         category = "Gameplay Changes";
-        config.addCustomCategoryComment(category, "Finite Water");
         FiniteWater = config.getBoolean("finiteWater", category, true, "Disables creation of water source blocks");
         BottlesConsumeSourceBlock = config.getBoolean("bottlesConsumeSourceBlock", category, true, "Bottles consume water source block");
+        AxeForLeather = config.getBoolean("axeForLeather", category, true, "Killing cows with an axe drops more leather but no beef");
 
         config.save();
     }

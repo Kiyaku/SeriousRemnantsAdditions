@@ -1,9 +1,7 @@
 package com.seriouscreeper.sradditions;
 
 import com.seriouscreeper.sradditions.config.ConfigHandler;
-import com.seriouscreeper.sradditions.events.handlers.ForgeEventHandlers;
-import com.seriouscreeper.sradditions.events.handlers.ListenerRightClickBlock;
-import com.seriouscreeper.sradditions.events.handlers.ListenerWaterSource;
+import com.seriouscreeper.sradditions.events.handlers.*;
 import com.seriouscreeper.sradditions.init.ModBlocks;
 import com.seriouscreeper.sradditions.init.ModItems;
 import com.seriouscreeper.sradditions.proxy.CommonProxy;
@@ -14,11 +12,13 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import toughasnails.core.ToughAsNails;
+import toughasnails.handler.thirst.FillBottleHandler;
 
 import java.io.File;
 
 
-@Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, acceptedMinecraftVersions = Reference.ACCEPTED_VERSIONS)
+@Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, dependencies = Reference.DEPENDENCIES, acceptedMinecraftVersions = Reference.ACCEPTED_VERSIONS)
 public class SRAdditions {
     @Mod.Instance
     public static SRAdditions instance;
@@ -56,6 +56,11 @@ public class SRAdditions {
         if(ConfigHandler.BottlesConsumeSourceBlock) {
             ListenerRightClickBlock listenerRightClickBlock = new ListenerRightClickBlock();
             MinecraftForge.EVENT_BUS.register(listenerRightClickBlock);
+        }
+
+        if(ConfigHandler.AxeForLeather) {
+            MoreLeatherHandler moreLeatherHandler = new MoreLeatherHandler();
+            MinecraftForge.EVENT_BUS.register(moreLeatherHandler);
         }
     }
 

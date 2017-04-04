@@ -2,6 +2,7 @@ package com.seriouscreeper.sradditions.init;
 
 import com.seriouscreeper.sradditions.blocks.BlockAdventureBlock;
 import com.seriouscreeper.sradditions.blocks.BlockCosmeticBeacon;
+import com.seriouscreeper.sradditions.blocks.BlockEmberGenerator;
 import com.seriouscreeper.sradditions.renderer.AdventureBlockRangeRenderer;
 import com.seriouscreeper.sradditions.tileentity.TileEntityAdventureBlock;
 import com.seriouscreeper.sradditions.tileentity.TileEntityCosmeticBeacon;
@@ -24,6 +25,8 @@ public class ModBlocks {
     public static ItemBlock ibBlockAdventure;
     public static Block blockCosmeticBeacon;
     public static ItemBlock ibCosmeticBeacon;
+    public static Block blockEmberGenerator;
+    public static ItemBlock ibEmberGenerator;
 
 
     public static void init() {
@@ -32,12 +35,16 @@ public class ModBlocks {
 
         blockCosmeticBeacon = new BlockCosmeticBeacon("cosmetic_beacon");
         ibCosmeticBeacon = new ItemBlock(blockCosmeticBeacon);
+
+        //blockEmberGenerator = new BlockEmberGenerator("ember_generator");
+        //ibEmberGenerator = new ItemBlock(blockEmberGenerator);
     }
 
     @SideOnly(Side.CLIENT)
     public static void registerRenders() {
         registerRender(blockAdventure);
         registerRender(blockCosmeticBeacon);
+        //registerRender(blockEmberGenerator);
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCosmeticBeacon.class, new TileEntityCosmeticBeaconRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAdventureBlock.class, new AdventureBlockRangeRenderer());
     }
