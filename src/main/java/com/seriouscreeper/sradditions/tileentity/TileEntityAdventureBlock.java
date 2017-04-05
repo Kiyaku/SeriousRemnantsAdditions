@@ -1,5 +1,6 @@
 package com.seriouscreeper.sradditions.tileentity;
 
+import com.seriouscreeper.sradditions.config.ConfigHandler;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -11,6 +12,7 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.GameType;
 
 import java.util.ArrayList;
@@ -139,7 +141,7 @@ public class TileEntityAdventureBlock extends TileEntity implements ITickable {
 
         tick++;
 
-        if(tick % 20 == 0) {
+        if(tick % ConfigHandler.AdventureBlockUpdateRate == 0) {
             tick = 0;
 
             List<EntityPlayer> players = world.playerEntities;
@@ -150,7 +152,7 @@ public class TileEntityAdventureBlock extends TileEntity implements ITickable {
                 if (!tempPlayers.contains(tempPlayer.getUniqueID()) && !tempPlayer.isCreative() && isWithinArea(tempPlayer.getPosition())) {
                     tempPlayers.add(tempPlayer.getUniqueID());
                     tempPlayer.setGameType(GameType.ADVENTURE);
-                    tempPlayer.sendMessage(new TextComponentString("Switched to adventure mode"));
+                    tempPlayer.sendStatusMessage(new TextComponentTranslation("sradditions.switched_adventuremode"), true);
 
                     if (!titleString.isEmpty()) {
                         world.getMinecraftServer().commandManager.executeCommand(world.getMinecraftServer(), "/title " + tempPlayer.getName() + " times 5 60 5");
@@ -171,7 +173,7 @@ public class TileEntityAdventureBlock extends TileEntity implements ITickable {
                     tempPlayers.remove(tempPlayer.getUniqueID());
 
                     if(!tempPlayer.isCreative() && !tempPlayer.isDead) {
-                        tempPlayer.sendMessage(new TextComponentString("Switched to survival mode"));
+                        tempPlayer.sendStatusMessage(new TextComponentTranslation("sradditions.switched_survivalmode"), true);
                         tempPlayer.setGameType(GameType.SURVIVAL);
 
                         if(!titleString.isEmpty()) {

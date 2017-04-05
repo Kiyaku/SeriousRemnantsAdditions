@@ -1,0 +1,16 @@
+{
+  "pools": [
+    {
+      "name": "common",
+      "rolls": 1,
+      "entries": [
+      ]
+    },
+    {
+      "name": "uncommon",
+      "rolls": 1,
+      "entries": [
+      ]
+    }
+  ]
+}

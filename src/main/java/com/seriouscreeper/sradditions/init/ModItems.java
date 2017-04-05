@@ -1,25 +1,28 @@
 package com.seriouscreeper.sradditions.init;
 
 import com.seriouscreeper.sradditions.Reference;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.ModelBakery;
+import com.seriouscreeper.sradditions.items.ItemLootCrate;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ModItems {
+    public static Item itemLootCrate;
 
     public static void init() {
+        itemLootCrate = new ItemLootCrate("loot_crate");
+        GameRegistry.register(itemLootCrate);
     }
 
     public static void registerRenders() {
+        registerRender(itemLootCrate, 0);
+        registerRender(itemLootCrate, 1);
+        registerRender(itemLootCrate, 2);
+        registerRender(itemLootCrate, 3);
     }
 
-    private static void registerRender(Item item) {
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
-    }
-    private static void registerRender(Item item, int meta, String file) {
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, meta, new ModelResourceLocation(Reference.MOD_ID + ":" + file, "inventory"));
+    private static void registerRender(Item item, int meta) {
+        ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(Reference.MOD_ID + ":loot_crate_" + meta, "inventory"));
     }
 }

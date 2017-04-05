@@ -4,7 +4,9 @@ import com.seriouscreeper.sradditions.config.ConfigHandler;
 import com.seriouscreeper.sradditions.events.handlers.*;
 import com.seriouscreeper.sradditions.init.ModBlocks;
 import com.seriouscreeper.sradditions.init.ModItems;
+import com.seriouscreeper.sradditions.loot.ModLootTables;
 import com.seriouscreeper.sradditions.proxy.CommonProxy;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -41,6 +43,8 @@ public class SRAdditions {
     public void preInit(FMLPreInitializationEvent event) {
         proxy.preInit(event);
 
+        ResourceLocation location = ModLootTables.SeriousLoot;
+
         configDir = new File(event.getModConfigurationDirectory() + "/seriousmods");
         configDir.mkdir();
         ConfigHandler.init(new File(configDir, Reference.MOD_ID + ".cfg"));
@@ -61,6 +65,11 @@ public class SRAdditions {
         if(ConfigHandler.AxeForLeather) {
             MoreLeatherHandler moreLeatherHandler = new MoreLeatherHandler();
             MinecraftForge.EVENT_BUS.register(moreLeatherHandler);
+        }
+
+        if(ConfigHandler.PreventEnchanting) {
+            RightClickEnchantmentTable rightClickEnchantmentTable = new RightClickEnchantmentTable();
+            MinecraftForge.EVENT_BUS.register(rightClickEnchantmentTable);
         }
     }
 
