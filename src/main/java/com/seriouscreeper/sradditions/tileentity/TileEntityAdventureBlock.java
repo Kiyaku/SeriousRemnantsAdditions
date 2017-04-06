@@ -1,11 +1,13 @@
 package com.seriouscreeper.sradditions.tileentity;
 
+import com.seriouscreeper.sradditions.SRAdditions;
 import com.seriouscreeper.sradditions.config.ConfigHandler;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;

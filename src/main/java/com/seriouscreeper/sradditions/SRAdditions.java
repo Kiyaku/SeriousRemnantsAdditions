@@ -2,10 +2,10 @@ package com.seriouscreeper.sradditions;
 
 import com.seriouscreeper.sradditions.config.ConfigHandler;
 import com.seriouscreeper.sradditions.events.handlers.*;
-import com.seriouscreeper.sradditions.init.ModBlocks;
-import com.seriouscreeper.sradditions.init.ModItems;
 import com.seriouscreeper.sradditions.loot.ModLootTables;
+import com.seriouscreeper.sradditions.potions.FlightPotion;
 import com.seriouscreeper.sradditions.proxy.CommonProxy;
+import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.MinecraftForge;
@@ -14,8 +14,6 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import toughasnails.core.ToughAsNails;
-import toughasnails.handler.thirst.FillBottleHandler;
 
 import java.io.File;
 
@@ -31,6 +29,7 @@ public class SRAdditions {
 
     public static BlockPos adventureTempPos1;
     public static BlockPos adventureTempPos2;
+    public static Potion flightPotion = new FlightPotion(false, 0).setPotionName("potion.flightPotion");
 
     public static File configDir;
 
@@ -71,6 +70,9 @@ public class SRAdditions {
             RightClickEnchantmentTable rightClickEnchantmentTable = new RightClickEnchantmentTable();
             MinecraftForge.EVENT_BUS.register(rightClickEnchantmentTable);
         }
+
+        EmbersFlightHandler embersFlightHandler = new EmbersFlightHandler();
+        MinecraftForge.EVENT_BUS.register(embersFlightHandler);
     }
 
     @Mod.EventHandler
