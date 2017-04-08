@@ -5,6 +5,7 @@ import com.seriouscreeper.sradditions.events.handlers.*;
 import com.seriouscreeper.sradditions.loot.ModLootTables;
 import com.seriouscreeper.sradditions.potions.FlightPotion;
 import com.seriouscreeper.sradditions.proxy.CommonProxy;
+import net.minecraft.block.Block;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -16,6 +17,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 import java.io.File;
+import java.util.HashMap;
 
 
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, dependencies = Reference.DEPENDENCIES, acceptedMinecraftVersions = Reference.ACCEPTED_VERSIONS)
@@ -33,9 +35,7 @@ public class SRAdditions {
 
     public static File configDir;
 
-    public static File getConfigDir() {
-       return configDir;
-    }
+    public static HashMap<Block, Float> fallingBlocks = new HashMap<Block, Float>();
 
 
     @Mod.EventHandler
@@ -75,6 +75,10 @@ public class SRAdditions {
             SleepHandler sleepHandler = new SleepHandler();
             MinecraftForge.EVENT_BUS.register(sleepHandler);
         }
+
+        FallingBlockListener fallingBlockListener = new FallingBlockListener();
+        MinecraftForge.EVENT_BUS.register(fallingBlockListener);
+
 
         //EmbersFlightListener embersFlightHandler = new EmbersFlightListener();
         //MinecraftForge.EVENT_BUS.register(embersFlightHandler);

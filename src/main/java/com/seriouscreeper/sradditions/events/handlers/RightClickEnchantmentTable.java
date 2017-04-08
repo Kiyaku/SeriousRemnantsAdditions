@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class RightClickEnchantmentTable {
     @SubscribeEvent
-    public void pnRightClick(PlayerInteractEvent.RightClickBlock event) {
+    public void onRightClick(PlayerInteractEvent.RightClickBlock event) {
         World world = event.getWorld();
 
         if(world.getBlockState(event.getPos()).getBlock() == Blocks.ENCHANTING_TABLE) {
