@@ -55,7 +55,7 @@ public class ConfigHandler {
         EnableBlockFracturing = config.getBoolean("enableBlockFracturing", category, true, "Enable block fracturing");
         GravityBlocksHurt = config.getBoolean("gravityBlocksHurt", category, true, "Falling blocks hurt players");
 
-        String[] gravityBlocks = config.getStringList("gravityBlocks", category, new String[] {"minecraft:stone@0.2", "minecraft:cobblestone@0.6", "minecraft:log@0.3", "minecraft:log2@0.3", "minecraft:leaves@0.6"}, "List of blocks and their chance of falling (blockname@chance)");
+        String[] gravityBlocks = config.getStringList("gravityBlocks", category, new String[] {"minecraft:stone@0.1", "minecraft:cobblestone@0.6", "minecraft:log@0.3", "minecraft:log2@0.3", "minecraft:leaves@0.6", "minecraft:dirt@0.4", "minecraft:grass@0.2"}, "List of blocks and their chance of falling (blockname@chance)");
         if(EnableBlockGravity) {
             for(String blocks : gravityBlocks) {
                 Block block = Block.getBlockFromName(blocks.split("@")[0]);
