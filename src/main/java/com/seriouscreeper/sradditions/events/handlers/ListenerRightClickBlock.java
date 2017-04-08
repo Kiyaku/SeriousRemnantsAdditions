@@ -30,6 +30,7 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import toughasnails.api.config.SyncedConfig;
 import toughasnails.api.item.TANItems;
+import toughasnails.block.BlockRainCollector;
 import toughasnails.item.ItemCanteen;
 import toughasnails.item.ItemTANWaterBottle;
 
@@ -53,6 +54,17 @@ public class ListenerRightClickBlock {
                     event.getWorld().playSound(player, player.posX, player.posY, player.posZ, SoundEvents.BLOCK_BREWING_STAND_BREW, SoundCategory.NEUTRAL, 1.0F, 1.0F);
                     cauldron.setWaterLevel(event.getWorld(), event.getPos(), state, state.getValue(BlockCauldron.LEVEL) - 1);
                     heldItem.setDamage(event.getItemStack(), 1);
+                } else if (event.getWorld().getBlockState(event.getPos()).getBlock() instanceof BlockRainCollector) {
+                    state = event.getWorld().getBlockState(event.getPos());
+                    BlockRainCollector rainCollector = (BlockRainCollector)state.getBlock();
+                    int level = state.getValue(BlockRainCollector.LEVEL);
+
+                    if(level > 0) {
+                        rainCollector.setWaterLevel(event.getWorld(), event.getPos(), state, level - 1);
+                        heldItem.setDamage(event.getItemStack(), 3);
+                        event.getWorld().playSound(player, player.posX, player.posY, player.posZ, SoundEvents.BLOCK_BREWING_STAND_BREW, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+                        event.setCanceled(true);
+                    }
                 } else {
                     event.setCanceled(true);
                 }

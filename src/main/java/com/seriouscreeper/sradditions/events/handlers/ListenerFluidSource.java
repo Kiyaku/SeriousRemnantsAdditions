@@ -10,11 +10,15 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 
-public class ListenerWaterSource {
+public class ListenerFluidSource {
     @SubscribeEvent
-    public void WaterGen(BlockEvent.CreateFluidSourceEvent event) {
-        if(event.getWorld().getBlockState(event.getPos()).getMaterial() == Material.WATER && event.getWorld().getBiome(event.getPos()) != Biomes.DEEP_OCEAN) {
+    public void FluidSource(BlockEvent.CreateFluidSourceEvent event) {
+        Material material = event.getWorld().getBlockState(event.getPos()).getMaterial();
+
+        if(material == Material.WATER && event.getWorld().getBiome(event.getPos()) != Biomes.DEEP_OCEAN) {
             event.setResult(Event.Result.DENY);
+        } else if(material == Material.LAVA && event.getWorld().getBiome(event.getPos()) == Biomes.HELL) {
+            event.setResult(Event.Result.ALLOW);
         }
     }
 }

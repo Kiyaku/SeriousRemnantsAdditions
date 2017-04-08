@@ -52,8 +52,8 @@ public class SRAdditions {
         forgeEventHandler.register();
 
         if(ConfigHandler.FiniteWater) {
-            ListenerWaterSource listenerWaterSource = new ListenerWaterSource();
-            MinecraftForge.EVENT_BUS.register(listenerWaterSource);
+            ListenerFluidSource listenerFluidSource = new ListenerFluidSource();
+            MinecraftForge.EVENT_BUS.register(listenerFluidSource);
         }
 
         if(ConfigHandler.BottlesConsumeSourceBlock) {
@@ -71,8 +71,13 @@ public class SRAdditions {
             MinecraftForge.EVENT_BUS.register(rightClickEnchantmentTable);
         }
 
-        EmbersFlightHandler embersFlightHandler = new EmbersFlightHandler();
-        MinecraftForge.EVENT_BUS.register(embersFlightHandler);
+        if(ConfigHandler.PreventEarlySleep) {
+            SleepHandler sleepHandler = new SleepHandler();
+            MinecraftForge.EVENT_BUS.register(sleepHandler);
+        }
+
+        //EmbersFlightHandler embersFlightHandler = new EmbersFlightHandler();
+        //MinecraftForge.EVENT_BUS.register(embersFlightHandler);
     }
 
     @Mod.EventHandler
