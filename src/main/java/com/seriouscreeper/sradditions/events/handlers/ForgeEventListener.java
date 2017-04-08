@@ -11,7 +11,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 
-public class ForgeEventHandlers {
+public class ForgeEventListener {
     public void register()
     {
         MinecraftForge.EVENT_BUS.register(this);

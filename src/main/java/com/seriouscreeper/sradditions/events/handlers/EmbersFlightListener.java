@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 
-public class EmbersFlightHandler {
+public class EmbersFlightListener {
     @SubscribeEvent
     public void onHasPotionEffect(TickEvent.PlayerTickEvent event) {
         PotionEffect effect = event.player.getActivePotionEffect(SRAdditions.flightPotion);

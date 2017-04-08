@@ -36,7 +36,7 @@ import toughasnails.item.ItemTANWaterBottle;
 
 
 // Heavily inspired by darkhax's "Thirsty Bottles"
-public class ListenerRightClickBlock {
+public class RightClickBlockListener {
     @SubscribeEvent
     public void onItemUsed(RightClickBlock event) {
         if(event.getItemStack() != ItemStack.EMPTY) {

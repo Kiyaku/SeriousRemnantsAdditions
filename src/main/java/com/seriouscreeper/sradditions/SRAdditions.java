@@ -48,17 +48,17 @@ public class SRAdditions {
         configDir.mkdir();
         ConfigHandler.init(new File(configDir, Reference.MOD_ID + ".cfg"));
 
-        ForgeEventHandlers forgeEventHandler = new ForgeEventHandlers();
+        ForgeEventListener forgeEventHandler = new ForgeEventListener();
         forgeEventHandler.register();
 
         if(ConfigHandler.FiniteWater) {
-            ListenerFluidSource listenerFluidSource = new ListenerFluidSource();
-            MinecraftForge.EVENT_BUS.register(listenerFluidSource);
+            FluidSourceListener fluidSourceListener = new FluidSourceListener();
+            MinecraftForge.EVENT_BUS.register(fluidSourceListener);
         }
 
         if(ConfigHandler.BottlesConsumeSourceBlock) {
-            ListenerRightClickBlock listenerRightClickBlock = new ListenerRightClickBlock();
-            MinecraftForge.EVENT_BUS.register(listenerRightClickBlock);
+            RightClickBlockListener rightClickBlockListener = new RightClickBlockListener();
+            MinecraftForge.EVENT_BUS.register(rightClickBlockListener);
         }
 
         if(ConfigHandler.AxeForLeather) {
@@ -76,7 +76,7 @@ public class SRAdditions {
             MinecraftForge.EVENT_BUS.register(sleepHandler);
         }
 
-        //EmbersFlightHandler embersFlightHandler = new EmbersFlightHandler();
+        //EmbersFlightListener embersFlightHandler = new EmbersFlightListener();
         //MinecraftForge.EVENT_BUS.register(embersFlightHandler);
     }
 

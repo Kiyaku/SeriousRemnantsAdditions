@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 
-public class ListenerFluidSource {
+public class FluidSourceListener {
     @SubscribeEvent
     public void FluidSource(BlockEvent.CreateFluidSourceEvent event) {
         Material material = event.getWorld().getBlockState(event.getPos()).getMaterial();
