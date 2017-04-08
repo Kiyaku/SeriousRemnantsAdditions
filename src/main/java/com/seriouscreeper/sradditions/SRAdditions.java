@@ -36,6 +36,7 @@ public class SRAdditions {
     public static File configDir;
 
     public static HashMap<Block, Float> fallingBlocks = new HashMap<Block, Float>();
+    public static HashMap<Block, Float> fracturingBlocks = new HashMap<Block, Float>();
 
 
     @Mod.EventHandler

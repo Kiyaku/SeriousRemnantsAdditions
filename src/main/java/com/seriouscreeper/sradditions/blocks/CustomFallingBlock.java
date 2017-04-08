@@ -16,9 +16,9 @@ public class CustomFallingBlock extends EntityFallingBlock {
     public void onUpdate() {
         if (this.fallTime > 20 && Math.abs(this.motionX) + Math.abs(this.motionY) + Math.abs(this.motionZ) < 0.1) {
             setDead();
+        } else {
+            super.onUpdate();
         }
-
-        super.onUpdate();
     }
 
 

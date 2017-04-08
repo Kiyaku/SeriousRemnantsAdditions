@@ -23,6 +23,7 @@ public class ConfigHandler {
     public static boolean SleepDebuffs;
 
     public static boolean EnableBlockGravity;
+    public static boolean EnableBlockFracturing;
     public static boolean GravityBlocksHurt;
 
 
@@ -51,14 +52,24 @@ public class ConfigHandler {
 
         category = "Gravity Blocks";
         EnableBlockGravity = config.getBoolean("enableBlockGravity", category, true, "Enable block gravity");
+        EnableBlockFracturing = config.getBoolean("enableBlockFracturing", category, true, "Enable block fracturing");
         GravityBlocksHurt = config.getBoolean("gravityBlocksHurt", category, true, "Falling blocks hurt players");
 
-        String[] affectedBlocks = config.getStringList("affectedBlocks", category, new String[] {"minecraft:stone@0.4", "minecraft:cobblestonme@0.6"}, "List of blocks and their chance of falling (blockname@chance)");
+        String[] gravityBlocks = config.getStringList("gravityBlocks", category, new String[] {"minecraft:stone@0.2", "minecraft:cobblestone@0.6", "minecraft:log@0.3", "minecraft:log2@0.3", "minecraft:leaves@0.6"}, "List of blocks and their chance of falling (blockname@chance)");
         if(EnableBlockGravity) {
-            for(String blocks : affectedBlocks) {
+            for(String blocks : gravityBlocks) {
                 Block block = Block.getBlockFromName(blocks.split("@")[0]);
                 float chance = Float.parseFloat(blocks.split("@")[1]);
                 SRAdditions.fallingBlocks.put(block, chance);
+            }
+        }
+
+        String[] fracturingBlocks = config.getStringList("fracturingBlocks", category, new String[] {"minecraft:stone@0.8", "minecraft:cobblestone@0.4"}, "List of blocks that can fracture neighbour blocks and their chance of falling (blockname@chance)");
+        if(EnableBlockFracturing) {
+            for(String blocks : fracturingBlocks) {
+                Block block = Block.getBlockFromName(blocks.split("@")[0]);
+                float chance = Float.parseFloat(blocks.split("@")[1]);
+                SRAdditions.fracturingBlocks.put(block, chance);
             }
         }
 
