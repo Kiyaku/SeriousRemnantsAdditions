@@ -77,8 +77,10 @@ public class SRAdditions {
             MinecraftForge.EVENT_BUS.register(sleepHandler);
         }
 
-        FallingBlockListener fallingBlockListener = new FallingBlockListener();
-        MinecraftForge.EVENT_BUS.register(fallingBlockListener);
+        if(ConfigHandler.EnableBlockFracturing || ConfigHandler.EnableBlockGravity) {
+            FallingBlockListener fallingBlockListener = new FallingBlockListener();
+            MinecraftForge.EVENT_BUS.register(fallingBlockListener);
+        }
 
 
         //EmbersFlightListener embersFlightHandler = new EmbersFlightListener();
