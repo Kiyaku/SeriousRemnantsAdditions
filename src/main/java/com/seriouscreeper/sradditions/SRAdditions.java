@@ -82,7 +82,6 @@ public class SRAdditions {
             MinecraftForge.EVENT_BUS.register(fallingBlockListener);
         }
 
-
         //EmbersFlightListener embersFlightHandler = new EmbersFlightListener();
         //MinecraftForge.EVENT_BUS.register(embersFlightHandler);
     }

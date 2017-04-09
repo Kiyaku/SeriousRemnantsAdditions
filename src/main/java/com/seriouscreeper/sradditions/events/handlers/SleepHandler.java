@@ -9,15 +9,14 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 
 public class SleepHandler {
-    @SubscribeEvent
+    @SubscribeEvent()
     public void onUseBed(PlayerSleepInBedEvent event) {
         World world = event.getEntityPlayer().getEntityWorld();
-
-        System.out.println(getWorldHours(world));
 
         if(getWorldHours(world) < ConfigHandler.BedTimeHour - 6) {
             event.setResult(EntityPlayer.SleepResult.OTHER_PROBLEM);
@@ -29,7 +28,7 @@ public class SleepHandler {
 
     @SubscribeEvent
     public void onWakeUp(PlayerWakeUpEvent event) {
-        if(ConfigHandler.SleepDebuffs) {
+        if(ConfigHandler.SleepDebuffs && getWorldHours(event.getEntityPlayer().world) < ConfigHandler.BedTimeHour - 6) {
             EntityPlayer player = event.getEntityPlayer();
 
             player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel() - ConfigHandler.LostFoodOnSleep);
