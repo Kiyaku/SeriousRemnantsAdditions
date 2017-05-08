@@ -25,6 +25,9 @@ public class ConfigHandler {
     public static boolean EnableBlockGravity;
     public static boolean EnableBlockFracturing;
     public static boolean GravityBlocksHurt;
+    public static boolean SilkPreventsGravity;
+    public static boolean SilkPreventsFracturing;
+    public static int MaxHarvestLevelToFracture;
 
 
     public static void init(File file) {
@@ -54,6 +57,9 @@ public class ConfigHandler {
         EnableBlockGravity = config.getBoolean("enableBlockGravity", category, true, "Enable block gravity");
         EnableBlockFracturing = config.getBoolean("enableBlockFracturing", category, true, "Enable block fracturing");
         GravityBlocksHurt = config.getBoolean("gravityBlocksHurt", category, true, "Falling blocks hurt players");
+        SilkPreventsGravity = config.getBoolean("silkPreventsGravity", category, true, "Slik touch prevents neighbouring blocks from falling");
+        SilkPreventsFracturing = config.getBoolean("silkPreventsFracturing", category, true, "Slik touch prevents neighbouring blocks from fracturing");
+        MaxHarvestLevelToFracture = config.getInt("maxHarvestLevelToFracture", category, 4, 0, 10, "Tools with a quality above or equal this value do not fracture blocks");
 
         String[] gravityBlocks = config.getStringList("gravityBlocks", category, new String[] {"minecraft:stone@0.1", "minecraft:cobblestone@0.6", "minecraft:log@0.3", "minecraft:log2@0.3", "minecraft:leaves@0.6", "minecraft:dirt@0.4", "minecraft:grass@0.2"}, "List of blocks and their chance of falling (blockname@chance)");
         if(EnableBlockGravity) {

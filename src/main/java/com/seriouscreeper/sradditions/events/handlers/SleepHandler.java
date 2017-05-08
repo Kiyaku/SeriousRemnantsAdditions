@@ -11,6 +11,8 @@ import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 
 public class SleepHandler {
@@ -31,8 +33,7 @@ public class SleepHandler {
         if(ConfigHandler.SleepDebuffs && getWorldHours(event.getEntityPlayer().world) < ConfigHandler.BedTimeHour - 6) {
             EntityPlayer player = event.getEntityPlayer();
 
-            player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel() - ConfigHandler.LostFoodOnSleep);
-            player.getFoodStats().setFoodSaturationLevel(player.getFoodStats().getSaturationLevel() - ConfigHandler.LostFoodOnSleep);
+            player.getFoodStats().addStats(-ConfigHandler.LostFoodOnSleep, -ConfigHandler.LostFoodOnSleep);
             player.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, ConfigHandler.SleepWeaknessDuration));
         }
     }

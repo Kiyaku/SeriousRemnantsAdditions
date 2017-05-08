@@ -5,6 +5,7 @@ import com.seriouscreeper.sradditions.events.handlers.*;
 import com.seriouscreeper.sradditions.loot.ModLootTables;
 import com.seriouscreeper.sradditions.potions.FlightPotion;
 import com.seriouscreeper.sradditions.proxy.CommonProxy;
+import com.seriouscreeper.sradditions.tileentity.TileEntityAdventureBlock;
 import net.minecraft.block.Block;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
@@ -17,7 +18,9 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, dependencies = Reference.DEPENDENCIES, acceptedMinecraftVersions = Reference.ACCEPTED_VERSIONS)

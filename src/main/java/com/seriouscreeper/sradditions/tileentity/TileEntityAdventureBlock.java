@@ -67,6 +67,12 @@ public class TileEntityAdventureBlock extends TileEntity implements ITickable {
 
 
     @Override
+    public void onChunkUnload() {
+        UnloadPlayers();
+        super.onChunkUnload();
+    }
+
+    @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
 
@@ -167,20 +173,25 @@ public class TileEntityAdventureBlock extends TileEntity implements ITickable {
                 }
             }
 
-            for(int i = 0; i < tempPlayers.size(); i++) {
-                UUID uuid = tempPlayers.get(i);
-                EntityPlayer tempPlayer = world.getPlayerEntityByUUID(uuid);
+            UnloadPlayers();
+        }
+    }
 
-                if(tempPlayer != null && !isWithinArea(tempPlayer.getPosition())) {
-                    tempPlayers.remove(tempPlayer.getUniqueID());
 
-                    if(!tempPlayer.isCreative() && !tempPlayer.isDead) {
-                        tempPlayer.sendStatusMessage(new TextComponentTranslation("sradditions.switched_survivalmode"), true);
-                        tempPlayer.setGameType(GameType.SURVIVAL);
+    private void UnloadPlayers() {
+        for(int i = 0; i < tempPlayers.size(); i++) {
+            UUID uuid = tempPlayers.get(i);
+            EntityPlayer tempPlayer = world.getPlayerEntityByUUID(uuid);
 
-                        if(!titleString.isEmpty()) {
-                            world.getMinecraftServer().commandManager.executeCommand(tempPlayer, "/title " + tempPlayer.getName() + " title {\"text\": \"Leaving area\"}");
-                        }
+            if(tempPlayer != null && !isWithinArea(tempPlayer.getPosition())) {
+                tempPlayers.remove(tempPlayer.getUniqueID());
+
+                if(!tempPlayer.isCreative() && !tempPlayer.isDead) {
+                    tempPlayer.sendStatusMessage(new TextComponentTranslation("sradditions.switched_survivalmode"), true);
+                    tempPlayer.setGameType(GameType.SURVIVAL);
+
+                    if(!titleString.isEmpty()) {
+                        world.getMinecraftServer().commandManager.executeCommand(tempPlayer, "/title " + tempPlayer.getName() + " title {\"text\": \"Leaving area\"}");
                     }
                 }
             }
